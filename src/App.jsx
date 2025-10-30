@@ -6,6 +6,7 @@ import Footer from "./components/Footer.jsx";
 import Cart from "./pages/Cart.jsx";
 import Frutas from "./pages/Frutas.jsx";
 import Verduras from "./pages/Verduras.jsx";
+import Contacto from "./pages/Contacto.jsx";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -67,6 +68,7 @@ function App() {
           />
           <Route path="/frutas" element={<Frutas addToCart={addToCart} />} />
           <Route path="/verduras" element={<Verduras addToCart={addToCart} />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
 
         <Footer />
