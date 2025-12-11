@@ -10,6 +10,13 @@ import Contacto from "./pages/Contacto.jsx";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./pages/Login.jsx";
+import PanelAdmin from "./pages/admin/PanelAdmin.jsx";
+import ProductoNew from "./pages/admin/ProductoNew.jsx";
+import ModalEdit from "./pages/admin/ModalEdit.jsx";
+
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -48,6 +55,7 @@ function App() {
   };
 
   return (
+    <AuthProvider>
     <Router>
       <div className="layout">
         <Header />
@@ -59,21 +67,28 @@ function App() {
           <Route
             path="/carrito"
             element={
-              <Cart
-                cart={cart}
-                removeFromCart={removeFromCart}
-                updateQuantity={updateQuantity}
-              />
+              <ProtectedRoute>
+                <Cart
+                  cart={cart}
+                  removeFromCart={removeFromCart}
+                  updateQuantity={updateQuantity}
+                />
+              </ProtectedRoute>
             }
           />
           <Route path="/frutas" element={<Frutas addToCart={addToCart} />} />
           <Route path="/verduras" element={<Verduras addToCart={addToCart} />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<PanelAdmin />} />
+          <Route path="/admin/productos/nuevo" element={<ProductoNew />} />
+          <Route path="/admin/productos/:id/editar" element={<ModalEdit />} />
         </Routes>
 
         <Footer />
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 
