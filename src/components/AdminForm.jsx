@@ -95,6 +95,8 @@ function AdminForm({ id }) {
 
   return (
     <div className="container mt-4">
+     <div className="row justify-content-center">
+      <div className="col-12 col-md-8 col-lg-6">
       <h2>{id ? "Editar Producto" : "Nuevo Producto"}</h2>
 
       {error && <p className="alert alert-danger">{error}</p>}
@@ -193,6 +195,8 @@ function AdminForm({ id }) {
         </button>
       </form>
     </div>
+     </div>
+  </div>
   );
 }
 

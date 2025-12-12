@@ -92,7 +92,7 @@ function AdminProduct() {
                 <td>{prod.category}</td>
                 <td>{prod.description}</td>
 
-                <td className="d-flex">
+                <td className="d-flex gap-2">
                   <Link
                     className="btn btn-warning btn-sm"
                     to={`/admin/productos/${prod.id}/editar`}
