@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; // Para ir a /admin/productos/nuevo y /editar
 import axios from "axios";
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin2Fill } from "react-icons/ri";
+
 
 function AdminProduct() {
   const [products, setProducts] = useState([]);
@@ -97,14 +100,14 @@ function AdminProduct() {
                     className="btn btn-warning btn-sm"
                     to={`/admin/productos/${prod.id}/editar`}
                   >
-                    ✏️ Editar
+                    <FaEdit/> Editar
                   </Link>
 
                   <button
                     className="btn btn-danger btn-sm"
                     onClick={() => deleteProduct(prod.id)}
                   >
-                    🗑️ Borrar
+                    <RiDeleteBin2Fill /> Borrar
                   </button>
                 </td>
               </tr>
