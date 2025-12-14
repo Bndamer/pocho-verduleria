@@ -52,9 +52,6 @@ function Navmenu({ searchTerm, setSearchTerm }) {
     setSearchTerm(e.target.value);
   }}
           />
-          <button type="submit" className="btn btn-dark">
-            Buscar
-          </button>
         </li>
         {isAuthenticated ? (
           <>
