@@ -20,6 +20,8 @@ import ModalEdit from "./pages/admin/ModalEdit.jsx";
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
 
   // 🟢 Agregar producto al carrito (sin duplicar)
   const addToCart = (product) => {
@@ -59,10 +61,10 @@ function App() {
     <Router>
       <div className="layout">
         <Header />
-        <Navmenu />
+        <Navmenu searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         <Routes>
-          <Route path="/" element={<Home addToCart={addToCart} />} />
+          <Route path="/" element={<Home addToCart={addToCart} searchTerm={searchTerm} />} />
 
           <Route
             path="/carrito"
@@ -76,8 +78,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/frutas" element={<Frutas addToCart={addToCart} />} />
-          <Route path="/verduras" element={<Verduras addToCart={addToCart} />} />
+          <Route path="/frutas" element={<Frutas addToCart={addToCart} searchTerm={searchTerm} />} />
+          <Route path="/verduras" element={<Verduras addToCart={addToCart} searchTerm={searchTerm} />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<PanelAdmin />} />

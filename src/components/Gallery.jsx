@@ -1,35 +1,8 @@
  import '../styles/style.css'; 
 import React, { useState, useEffect } from "react";
  
-function Gallery({ addToCart,categoryFilter  }) {
-  // Array de productos de prueba
-  /*     const products = [
-        {
-          id: 1,
-          name: "Frutillas",
-          price: 1500,
-          image: "/galeria/berry.jpg",
-        },
-        {
-          id: 2,
-          name: "Bananas",
-          price: 1200,
-          image: "/galeria/banana.png",
-        },
-        {
-          id: 3,
-          name: "Naranjas",
-          price: 1300,
-          image: "/galeria/orange.webp",
-        },
-        {
-            id:4,
-            name: "Fruta Dragon",
-            price: 4000,
-            image: "/galeria/dragon.webp",
-        }
-      ]; */
-
+function Gallery({ addToCart,categoryFilter ,searchTerm  }) {
+  
   const [products, setProducts] = useState([]); // Estado para los productos
   const [loading, setLoading] = useState(true); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
@@ -59,10 +32,23 @@ function Gallery({ addToCart,categoryFilter  }) {
   if (loading) return <p className="text-center mt-3">Cargando productos...</p>;
   if (error) return <p className="text-center text-danger">Error: {error}</p>;
 
-    //  Filtro por categoría si categoryFilter existe
-  const displayedProducts = categoryFilter
-    ? products.filter((p) => p.category === categoryFilter)
-    : products;
+
+    // 1) Filtro por categoría
+const filteredByCategory = categoryFilter
+  ? products.filter((p) => p.category === categoryFilter)
+  : products;
+
+// 2) Filtro por búsqueda (nombre o categoría)
+const displayedProducts = products
+  .filter((p) =>
+    categoryFilter ? p.category === categoryFilter : true
+  )
+  .filter((p) =>
+    searchTerm
+      ? p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.category.toLowerCase().includes(searchTerm.toLowerCase())
+      : true
+  );
 
   return (
     <section className=" ">
